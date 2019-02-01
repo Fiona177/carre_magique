@@ -1,0 +1,53 @@
+ALGORITHME : carre_magique
+//BUT :  Faire un programme qui affiche un carré magique
+//ENTREE : /
+//SORTIE : Un carré magique
+
+CONST : ttab<-5 : ENTIER
+VAR : tcarre:tableau[1..ttab,1..ttab] de ENTIER
+	  i,j,nb,anci,ancj : ENTIER
+
+DEBUT
+	
+	POUR i de 1 à ttab FAIRE 
+		POUR j de 1 à ttab FAIRE
+			tcarre[i,j]<-0
+		FINPOUR
+	FINPOUR
+
+	j<-ttab-(ttab DIV 2)
+	i<-ttab DIV 2
+	nb<-0
+
+	TANT QUE nb <> ttab*ttab FAIRE
+		nb<-nb+1
+		tcarre[i,j]<-nb
+		ancj<-j
+		j<-j+1
+
+		SI (j>ttab) ALORS
+			j<-1
+		FINSI
+
+		anci<-i
+		i<-i-1
+
+		SI (i<1) ALORS
+			i<-ttab
+		FINSI
+
+		SI tcarre[i,j] <> 0 ALORS
+			i<- anci-2
+			SI (i<1) ALORS
+				i<-ttab+i
+			FINSI
+			j<-ancj
+		FINSI
+	FINTANTQUE
+
+	POUR i de 1 à ttab FAIRE
+		POUR j de 1 à ttab FAIRE
+			ECRIRE tcarre[i,j]
+		FINPOUR
+	FINPOUR
+FIN
